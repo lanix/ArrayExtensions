@@ -1,6 +1,5 @@
 if (!Array.prototype.each) {
     Array.prototype.each = function(callBack) {
-        'use strict';
         var i,
             arrayLength = this.length;
 
@@ -12,7 +11,6 @@ if (!Array.prototype.each) {
 
 if (!Array.prototype.where) {
     Array.prototype.where = function(callBack) {
-        'use strict';
         var i,
             arrayLength = this.length,
             result = [],
@@ -31,7 +29,6 @@ if (!Array.prototype.where) {
 
 if (!Array.prototype.any) {
     Array.prototype.any = function(spec) {
-        'use strict';
         var i,
             arrayLength = this.length;
 
@@ -49,7 +46,6 @@ if (!Array.prototype.any) {
 
 if (!Array.prototype.select) {
     Array.prototype.select = function(spec) {
-        'use strict';
         var i,
             arrayLength = this.length,
             result = [];
@@ -64,7 +60,6 @@ if (!Array.prototype.select) {
 
 if (!Array.prototype.take) {
     Array.prototype.take = function(howMany, spec) {
-        'use strict';
         var i = 0,
             quantity = 0,
             result = [],
@@ -90,7 +85,6 @@ if (!Array.prototype.take) {
 
 if (!Array.prototype.skip) {
     Array.prototype.skip = function(howMany) {
-        'use strict';
         var i,
             result = [],
             arrayLength = this.length;
@@ -105,7 +99,6 @@ if (!Array.prototype.skip) {
 
 if (!Array.prototype.first) {
     Array.prototype.first = function(spec) {
-        'use strict';
         var i,
             arrayLength = this.length,
             result = null,
@@ -129,7 +122,6 @@ if (!Array.prototype.first) {
 
 if (!Array.prototype.last) {
     Array.prototype.last = function(spec) {
-        'use strict';
         var i,
             arrayLength = this.length,
             result = null,
@@ -154,7 +146,6 @@ if (!Array.prototype.last) {
 
 if (!Array.prototype.count) {
     Array.prototype.count = function(spec) {
-        'use strict';
         var i,
             arrayLength = this.length,
             count = 0;
@@ -175,7 +166,6 @@ if (!Array.prototype.count) {
 
 if (!Array.prototype.index) {
     Array.prototype.index = function(spec) {
-        'use strict';
         var i,
             arrayLength = this.length,
             currentValue;
@@ -198,7 +188,6 @@ if (!Array.prototype.index) {
 
 if (!Array.prototype.pluck) {
     Array.prototype.pluck = function(property) {
-        'use strict';
         var i,
             arrayLength = this.length,
             result = [],
@@ -217,7 +206,6 @@ if (!Array.prototype.pluck) {
 
 if (!Array.prototype.sum) {
     Array.prototype.sum = function(spec) {
-        'use strict';
         var i,
             arrayLength = this.length,
             num = null,
