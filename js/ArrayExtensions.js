@@ -1,3 +1,9 @@
+if (!Array.prototype.isArray) {
+    Array.prototype.isArray = function(value) {
+        return Object.prototype.toString.apply(value) === '[Object Array]'; 
+    }
+}
+
 if (!Array.prototype.each) {
     Array.prototype.each = function(callBack) {
         var i,
@@ -275,20 +281,14 @@ if (!Array.prototype.min) {
 if (!Array.prototype.flatten) {
     Array.prototype.flatten = function() {
         var i,
-            e,
-            tempArray = [],
             result = [],
             arrayLength = this.length,
-            currentValue,
-            isArray = Array.isArray || function(value) { return Object.prototype.toString.apply(value) === '[Object Array]'; };
+            currentValue;
 
             for (i = 0; i < arrayLength; i += 1){
                 currentValue = this[i];
-                if (isArray(currentValue)) {
-                    tempArray = currentValue.flatten();
-                    for (e = 0; e < tempArray.length; e += 1) {
-                        result.push(tempArray[e]);
-                    }
+                if (Array.isArray(currentValue)) {
+                    result.push.apply(result, currentValue.flatten());
                 } else {
                     result.push(currentValue);
                 }
