@@ -1,3 +1,9 @@
+// if (!Array.prototype.isArray) {
+//     Array.prototype.isArray = function(value) {
+//         return Object.prototype.toString.apply(value) === '[Object Array]';
+//     };
+// }
+
 if (!Array.prototype.each) {
     Array.prototype.each = function(callBack) {
         var i,
@@ -67,7 +73,7 @@ if (!Array.prototype.take) {
             currentValue;
 
         spec = spec || function(val) { return val; };
-        quantity = this.length > howMany ? howMany : this.length;
+        quantity = Math.max(howMany, this.length);
 
         while (result.length < quantity && i < arrayLength) {
             currentValue = this[i];
@@ -225,5 +231,75 @@ if (!Array.prototype.sum) {
         }
 
         return haveStrings ? str : num;
+    };
+}
+
+if (!Array.prototype.max) {
+    Array.prototype.max = function(comparer) {
+        var i,
+            arrayLength = this.length,
+            max,
+            currentValue;
+
+        comparer = comparer || function(a, b) { return a - b; };
+
+        if (arrayLength > 0) {
+            max = this[0];
+            for (i = 0; i < arrayLength; i += 1) {
+                currentValue = this[i];
+                if (comparer.call(this, max, currentValue) < 0) {
+                    max = currentValue;
+                }
+            }
+        }
+        return max;
+    };
+}
+
+if (!Array.prototype.min) {
+    Array.prototype.min = function(comparer) {
+        var i,
+            arrayLength = this.length,
+            min,
+            currentValue;
+
+        comparer = comparer || function(a, b) { return a - b; };
+
+        if (arrayLength > 0) {
+            min = this[0];
+            for (i = 0; i < arrayLength; i += 1) {
+                currentValue = this[i];
+                if (comparer.call(this, min, currentValue) > 0) {
+                    min = currentValue;
+                }
+            }
+        }
+        return min;
+    };
+}
+
+if (!Array.prototype.flatten) {
+    Array.prototype.flatten = function() {
+        var i,
+            e,
+            tempArray = [],
+            result = [],
+            arrayLength = this.length,
+            currentValue,
+            isArray = Array.isArray || function(value) { return Object.prototype.toString.apply(value) === '[Object Array]'; };
+            
+            for (i = 0; i < arrayLength; i += 1){
+                currentValue = this[i];
+                if (isArray(currentValue)) {
+                    tempArray = currentValue.flatten();
+                    for (e = 0; e < tempArray.length; e += 1) {
+                        result.push(tempArray[e]);
+                    }
+                } else {
+                    result.push(currentValue);
+                }
+            }
+
+        return result;
     };
 }
