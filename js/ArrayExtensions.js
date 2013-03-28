@@ -1,9 +1,3 @@
-// if (!Array.prototype.isArray) {
-//     Array.prototype.isArray = function(value) {
-//         return Object.prototype.toString.apply(value) === '[Object Array]';
-//     };
-// }
-
 if (!Array.prototype.each) {
     Array.prototype.each = function(callBack) {
         var i,
@@ -287,7 +281,7 @@ if (!Array.prototype.flatten) {
             arrayLength = this.length,
             currentValue,
             isArray = Array.isArray || function(value) { return Object.prototype.toString.apply(value) === '[Object Array]'; };
-            
+
             for (i = 0; i < arrayLength; i += 1){
                 currentValue = this[i];
                 if (isArray(currentValue)) {
