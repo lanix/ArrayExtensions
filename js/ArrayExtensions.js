@@ -1,13 +1,11 @@
-(function(){
+(function() {
 
     var isArray = function(value) {
         return Object.prototype.toString.apply(value) === '[object Array]';
-    },
-    k = function(value) {
+    }, k = function(value) {
         return value;
-    },
-    comp = function(a, b) {
-        return a - b; 
+    }, comp = function(a, b) {
+        return a - b;
     };
 
     if (!Array.prototype.each) {
@@ -79,7 +77,7 @@
                 len = this.length,
                 value;
 
-            if (len === 0){
+            if (len === 0) {
                 return result;
             }
 
@@ -123,7 +121,7 @@
                 result = null,
                 value;
 
-            if(len === 0){
+            if (len === 0) {
                 return null;
             }
 
@@ -136,7 +134,7 @@
                     return result;
                 }
             }
-            
+
             return null;
         };
     }
@@ -148,7 +146,7 @@
                 result = null,
                 value;
 
-            if(len === 0){
+            if (len === 0) {
                 return null;
             }
 
@@ -172,11 +170,11 @@
                 len = this.length,
                 count = 0;
 
-           if(len === 0){
+            if (len === 0) {
                 return 0;
             }
-            
-            if (typeof spec === 'function'){
+
+            if (typeof spec === 'function') {
                 for (i = 0; i < len; i += 1) {
                     if (spec.call(this, this[i], i)) {
                         count += 1;
@@ -196,7 +194,7 @@
                 len = this.length,
                 hold = spec;
 
-            if(len === 0){
+            if (len === 0) {
                 return -1;
             }
 
@@ -218,7 +216,7 @@
                 result = [],
                 value;
 
-            if(len === 0){
+            if (len === 0) {
                 return null;
             }
 
@@ -237,27 +235,32 @@
         Array.prototype.sum = function(spec) {
             var i,
                 len = this.length,
-                num = null,
-                str = '',
-                haveStrings = false,
-                result;
+                result,
+                value,
+                closure;
 
-            if(len === 0){
+            if (len === 0) {
                 return null;
             }
 
             spec = typeof spec === 'function' ? spec : k;
 
-            for (i = 0; i < len; i += 1) {
-                result = spec.call(this, this[i], i);
-                num += result;
-                str += result;
-                if (typeof result === 'string') {
-                    haveStrings = true;
+            value = spec.call(this, this[0]);
+
+            closure = function(val) {
+                return typeof spec.call(this, val) === typeof value;
+            };
+
+            if (this.every(closure, this)) {
+                for (i = 1; i < len; i += 1) {
+                    result = spec.call(this, this[i], i);
+                    value += result;
                 }
+            } else {
+                throw 'Unable to sum elements';
             }
 
-            return haveStrings ? str : num;
+            return value;
         };
     }
 
@@ -268,13 +271,12 @@
                 max,
                 value;
 
-            if (len === 0){
+            if (len === 0) {
                 return null;
             }
-           
+
             comparer = typeof comparer === 'function' ? comparer : comp;
 
-    
             max = this[0];
             for (i = 1; i < len; i += 1) {
                 value = this[i];
@@ -282,7 +284,7 @@
                     max = value;
                 }
             }
- 
+
             return max;
         };
     }
@@ -293,8 +295,8 @@
                 len = this.length,
                 min,
                 value;
-           
-           if (len === 0){
+
+            if (len === 0) {
                 return null;
             }
 
@@ -307,7 +309,7 @@
                     min = value;
                 }
             }
-            
+
             return min;
         };
     }
@@ -319,11 +321,11 @@
                 len = this.length,
                 value;
 
-           if (len === 0){
+            if (len === 0) {
                 return result;
             }
 
-            for (i = 0; i < len; i += 1){
+            for (i = 0; i < len; i += 1) {
                 value = this[i];
                 if (isArray(value)) {
                     result.push.apply(result, value.flatten());
