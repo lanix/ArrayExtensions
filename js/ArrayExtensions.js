@@ -1,15 +1,15 @@
-(function() {
+(function () {
 
-    var isArray = function(value) {
+    var isArray = function (value) {
         return Object.prototype.toString.apply(value) === '[object Array]';
-    }, k = function(value) {
+    }, k = function (value) {
         return value;
-    }, comp = function(a, b) {
+    }, comp = function (a, b) {
         return a - b;
     };
 
     if (!Array.prototype.each) {
-        Array.prototype.each = function(callBack) {
+        Array.prototype.each = function (callBack) {
             var i,
                 len = this.length;
 
@@ -20,7 +20,7 @@
     }
 
     if (!Array.prototype.where) {
-        Array.prototype.where = function(callBack) {
+        Array.prototype.where = function (callBack) {
             var i,
                 len = this.length,
                 result = [],
@@ -38,12 +38,12 @@
     }
 
     if (!Array.prototype.any) {
-        Array.prototype.any = function(spec) {
+        Array.prototype.any = function (spec) {
             var i,
                 len = this.length,
                 hold = spec;
 
-            spec = typeof spec === 'function' ? spec : function(val) { return hold === val; };
+            spec = typeof spec === 'function' ? spec : function (val) { return hold === val; };
 
             for (i = 0; i < len; i += 1) {
                 if (spec.call(this, this[i], i)) {
@@ -56,7 +56,7 @@
     }
 
     if (!Array.prototype.select) {
-        Array.prototype.select = function(spec) {
+        Array.prototype.select = function (spec) {
             var i,
                 len = this.length,
                 result = [];
@@ -70,7 +70,7 @@
     }
 
     if (!Array.prototype.take) {
-        Array.prototype.take = function(howMany, spec) {
+        Array.prototype.take = function (howMany, spec) {
             var i = 0,
                 quantity = 0,
                 result = [],
@@ -101,7 +101,7 @@
     }
 
     if (!Array.prototype.skip) {
-        Array.prototype.skip = function(howMany) {
+        Array.prototype.skip = function (howMany) {
             var i,
                 result = [],
                 len = this.length;
@@ -115,7 +115,7 @@
     }
 
     if (!Array.prototype.first) {
-        Array.prototype.first = function(spec) {
+        Array.prototype.first = function (spec) {
             var i,
                 len = this.length,
                 result = null,
@@ -140,7 +140,7 @@
     }
 
     if (!Array.prototype.last) {
-        Array.prototype.last = function(spec) {
+        Array.prototype.last = function (spec) {
             var i,
                 len = this.length,
                 result = null,
@@ -165,7 +165,7 @@
     }
 
     if (!Array.prototype.count) {
-        Array.prototype.count = function(spec) {
+        Array.prototype.count = function (spec) {
             var i,
                 len = this.length,
                 count = 0;
@@ -189,7 +189,7 @@
     }
 
     if (!Array.prototype.index) {
-        Array.prototype.index = function(spec) {
+        Array.prototype.index = function (spec) {
             var i,
                 len = this.length,
                 hold = spec;
@@ -198,7 +198,7 @@
                 return -1;
             }
 
-            spec = typeof spec === 'function' ? spec : function(val) { return hold === val; };
+            spec = typeof spec === 'function' ? spec : function (val) { return hold === val; };
 
             for (i = 0; i < len; i += 1) {
                 if (spec.call(this, this[i], i)) {
@@ -210,7 +210,7 @@
     }
 
     if (!Array.prototype.pluck) {
-        Array.prototype.pluck = function(property) {
+        Array.prototype.pluck = function (property) {
             var i,
                 len = this.length,
                 result = [],
@@ -232,7 +232,7 @@
     }
 
     if (!Array.prototype.sum) {
-        Array.prototype.sum = function(spec) {
+        Array.prototype.sum = function (spec) {
             var i,
                 len = this.length,
                 result,
@@ -247,7 +247,7 @@
 
             value = spec.call(this, this[0]);
 
-            closure = function(val) {
+            closure = function (val) {
                 return typeof spec.call(this, val) === typeof value;
             };
 
@@ -265,7 +265,7 @@
     }
 
     if (!Array.prototype.max) {
-        Array.prototype.max = function(comparer) {
+        Array.prototype.max = function (comparer) {
             var i,
                 len = this.length,
                 max,
@@ -290,7 +290,7 @@
     }
 
     if (!Array.prototype.min) {
-        Array.prototype.min = function(comparer) {
+        Array.prototype.min = function (comparer) {
             var i,
                 len = this.length,
                 min,
@@ -315,7 +315,7 @@
     }
 
     if (!Array.prototype.flatten) {
-        Array.prototype.flatten = function() {
+        Array.prototype.flatten = function () {
             var i,
                 result = [],
                 len = this.length,
